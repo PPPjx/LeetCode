@@ -20,11 +20,13 @@ var longestValidParentheses = function(s) {
         if(s[i] == ')' && left > 0) {
             arr[i] = arr[i - 1] + 2;
             left--;
-            if(i - arr[i] >= 0)
+            if(i - arr[i] >= 0) {
                 arr[i] += arr[i - arr[i]];
+            }
         }
-        if(arr[i] > maxLength)
+        if(arr[i] > maxLength) {
             maxLength = arr[i];
+        }
     }
     return maxLength;
 };
