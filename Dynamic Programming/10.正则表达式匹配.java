@@ -12,8 +12,8 @@ class Solution {
         return matchCore(s,sIndex,p,pIndex); 
     }
     
-    // 动态规划
-    // TODO: 临界情况未看
+    // 粘自网上
+    // 用递归|| 考虑情况下所有可能
     public boolean matchCore(String s,int sIndex,String p,int pIndex){
         if(sIndex==s.length() && pIndex==p.length()) return true;//匹配到结尾了，匹配成功
         if(sIndex <s.length() &&  pIndex==p.length()) return false;//p先结束，匹配失败
@@ -22,6 +22,7 @@ class Solution {
             //第一个匹配上了（字符相同或者和‘.’匹配），分三种情况
             //① sIndex+1：继续用*匹配下一个 ② sIndex+1,pIndex+2：结束*匹配，判断下一个字符 ③pIndex+2：当*前面的字符没有出现过
             if((sIndex < s.length() && p.charAt(pIndex)==s.charAt(sIndex))||(sIndex <s.length() && p.charAt(pIndex)=='.')){
+                // 后面两个或考虑的是=='.'的情况
                 return matchCore(s,sIndex+1,p,pIndex) || matchCore(s,sIndex+1,p,pIndex+2) || matchCore(s,sIndex,p,pIndex+2);
             }else{//第一个匹配不上，认为其没出现过，判断下面的
                 return matchCore(s,sIndex,p,pIndex+2);
